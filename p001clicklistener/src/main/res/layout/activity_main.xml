@@ -55,6 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:text="@string/random"
+        android:onClick="randomMe"
         android:textColor="@color/black"
         android:backgroundTint="@color/steelblue"
         app:layout_constraintBottom_toBottomOf="parent"

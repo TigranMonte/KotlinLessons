@@ -1,5 +1,6 @@
 package ru.tikodvlp.p001clicklistener
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -28,4 +29,11 @@ class MainActivity : AppCompatActivity() {
         count++
         textView.text = count.toString()
     }
+     fun randomMe(view: View) {
+         val randomIntent = Intent(this, MainActivity2::class.java)
+         val countString = textView.text.toString()
+         val count = Integer.parseInt(countString)
+         randomIntent.putExtra(MainActivity2.TOTAL_COUNT, count)
+         startActivity(randomIntent)
+     }
 }

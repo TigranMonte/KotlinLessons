@@ -4,4 +4,5 @@
     <string name="count">Count</string>
     <string name="random">Random</string>
     <string name="_0">0</string>
+    <string name="random_heading">Это случайное число между 0 и %1d</string>
 </resources>
