@@ -9,3 +9,4 @@ dependencyResolutionManagement {
 rootProject.name = "Kotlinlessons"
 include ':app'
 include ':p001clicklistener'
+include ':p002activitylifecycle'
