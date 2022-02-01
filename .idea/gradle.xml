@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/p001clicklistener" />
             <option value="$PROJECT_DIR$/p002activitylifecycle" />
+            <option value="$PROJECT_DIR$/p003activitystate" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

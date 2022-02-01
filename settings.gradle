@@ -10,3 +10,4 @@ rootProject.name = "Kotlinlessons"
 include ':app'
 include ':p001clicklistener'
 include ':p002activitylifecycle'
+include ':p003activitystate'
