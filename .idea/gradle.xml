@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/p001clicklistener" />
             <option value="$PROJECT_DIR$/p002activitylifecycle" />
             <option value="$PROJECT_DIR$/p003activitystate" />
+            <option value="$PROJECT_DIR$/p004variables" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
