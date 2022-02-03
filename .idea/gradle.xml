@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/p002activitylifecycle" />
             <option value="$PROJECT_DIR$/p003activitystate" />
             <option value="$PROJECT_DIR$/p004variables" />
+            <option value="$PROJECT_DIR$/p005string" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
