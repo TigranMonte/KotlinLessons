@@ -8,7 +8,7 @@ class MainActivity : AppCompatActivity() {
 
     private var number:Int = 6
     private var number2:Int = 6
-    private var text:String = "В магазине осталось ${getNumber()} яблок"
+    private var text:String = "В магазине <осталось> 123 яблок или больше"
     private var tvText: TextView? = null
 
 
@@ -17,11 +17,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         tvText = findViewById(R.id.tvView)
-        tvText?.setText(text)
+        var subText:String = text.substringAfter('<')
+        var subText2:String = subText.substringBefore('>')
+        tvText?.setText(subText2)
 
-    }
-
-    private fun getNumber():Int {
-        return number + number2
     }
 }
