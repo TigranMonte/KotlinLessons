@@ -1,5 +1,6 @@
 package ru.tikodvlp.sqlitekotlin.db
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -21,8 +22,17 @@ class MyDbManager (context: Context){
         db?.insert(MyDbNameClass.TABLE_NAME, null, values)
     }
 
+    @SuppressLint("Range")
     fun readDbData() : ArrayList<String> {
         val dataList = ArrayList<String>()
+        val cursor = db?.query(MyDbNameClass.TABLE_NAME, null, null,
+            null, null, null, null)
+
+            while (cursor?.moveToNext()!!) {
+                val dataText = cursor.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_TITLE))
+                dataList.add(dataText.toString())
+            }
+
         return dataList
     }
 }
