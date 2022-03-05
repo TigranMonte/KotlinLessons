@@ -32,7 +32,10 @@ class MyDbManager (context: Context){
                 val dataText = cursor.getString(cursor.getColumnIndex(MyDbNameClass.COLUMN_NAME_TITLE))
                 dataList.add(dataText.toString())
             }
-
+        cursor.close()
         return dataList
+    }
+    fun closeDb() {
+        myDbHelper.close()
     }
 }
