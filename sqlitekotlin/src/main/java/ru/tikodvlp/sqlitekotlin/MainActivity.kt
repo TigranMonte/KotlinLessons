@@ -27,10 +27,10 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         myDbManager.openDb()
 
-        }
+    }
 
-        override fun onDestroy() {
-            super.onDestroy()
-            myDbManager.closeDb()
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        myDbManager.closeDb()
+    }
 }

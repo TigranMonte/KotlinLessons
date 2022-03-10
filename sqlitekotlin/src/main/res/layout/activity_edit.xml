@@ -24,10 +24,10 @@
         android:layout_marginBottom="8dp"
         android:background="@android:drawable/editbox_background_normal"
         android:ems="10"
+        android:hint="@string/ed_title_hint"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:padding="10dp"
-        android:text="Name"
         app:layout_constraintBottom_toTopOf="@+id/edDesc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,9 +42,9 @@
         android:background="@android:drawable/editbox_background_normal"
         android:ems="10"
         android:gravity="top"
+        android:hint="@string/ed_desc_hint"
         android:inputType="textMultiLine|textPersonName"
         android:padding="10dp"
-        android:text="Name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/edTitle"
         app:layout_constraintStart_toStartOf="@+id/edTitle"
@@ -58,6 +58,7 @@
         android:alpha="0.5"
         android:clickable="true"
         android:contentDescription="@string/app_name"
+        android:onClick="onClickSave"
         app:backgroundTint="#2196F3"
         app:layout_constraintBottom_toBottomOf="@+id/edDesc"
         app:layout_constraintEnd_toEndOf="@+id/edDesc"
@@ -83,12 +84,25 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="@android:drawable/editbox_background_normal"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/guideline2"
         app:layout_constraintEnd_toEndOf="@id/edTitle"
         app:layout_constraintStart_toStartOf="@id/edTitle"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/imMainImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:scaleType="centerCrop"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <ImageButton
             android:id="@+id/imButtonEditImage"
@@ -97,34 +111,23 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:contentDescription="@string/app_name"
-            app:layout_constraintEnd_toEndOf="@id/imageView"
-            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="onClickChooseImage"
+            app:layout_constraintEnd_toEndOf="@id/imMainImage"
+            app:layout_constraintTop_toTopOf="@id/imMainImage"
             app:srcCompat="@android:drawable/ic_menu_edit" />
 
         <ImageButton
             android:id="@+id/imButtonDeleteImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:onClick="onClickDeleteImage"
+            android:layout_marginBottom="8dp"
             android:contentDescription="@string/app_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imButtonEditImage"
+            android:onClick="onClickDeleteImage"
+            app:layout_constraintBottom_toBottomOf="@id/imMainImage"
+            app:layout_constraintEnd_toEndOf="@id/imMainImage"
             app:srcCompat="@android:drawable/ic_menu_delete" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:padding="10dp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
