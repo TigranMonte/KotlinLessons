@@ -8,22 +8,25 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.w3c.dom.Text
 import ru.tikodvlp.sqlitekotlin.db.MyAdapter
 import ru.tikodvlp.sqlitekotlin.db.MyDbManager
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var rcView: RecyclerView
+    lateinit var tvNoElements: TextView
 
     val myDbManager = MyDbManager(this)
-    val myAdapter = MyAdapter(ArrayList())
+    val myAdapter = MyAdapter(ArrayList(), this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        init()
-
+        tvNoElements = findViewById(R.id.tvNoElements)
         rcView = findViewById(R.id.rcView)
+
+        init()
 
     }
 
@@ -49,6 +52,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun fillAdapter() {
-        myAdapter.updateAdapter(myDbManager.readDbData())
+        val list = myDbManager.readDbData()
+        myAdapter.updateAdapter(list)
+        if (list.size > 0) {
+            tvNoElements.visibility = View.GONE
+        } else {
+            tvNoElements.visibility = View.VISIBLE
+        }
     }
 }
