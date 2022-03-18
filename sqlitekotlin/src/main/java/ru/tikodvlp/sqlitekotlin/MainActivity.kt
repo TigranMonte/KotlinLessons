@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.w3c.dom.Text
@@ -48,6 +49,8 @@ class MainActivity : AppCompatActivity() {
 
     fun init() {
         rcView.layoutManager = LinearLayoutManager(this)
+        val swapHelper = getSwapMg()
+        swapHelper.attachToRecyclerView(rcView)
         rcView.adapter = myAdapter
     }
 
@@ -59,5 +62,22 @@ class MainActivity : AppCompatActivity() {
         } else {
             tvNoElements.visibility = View.VISIBLE
         }
+    }
+
+    private fun getSwapMg(): ItemTouchHelper {
+        return ItemTouchHelper(object:ItemTouchHelper.SimpleCallback
+            (0, ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                myAdapter.removeItem(viewHolder.adapterPosition)
+            }
+        })
     }
 }

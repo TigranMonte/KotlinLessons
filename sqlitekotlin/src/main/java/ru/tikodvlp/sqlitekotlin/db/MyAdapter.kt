@@ -15,17 +15,17 @@ class MyAdapter (listMain:ArrayList<ListItem>, contextM:Context): RecyclerView.A
     var listArray = listMain
     var context = contextM
 
-    class MyHolder(itemView: View, contextV:Context) : RecyclerView.ViewHolder(itemView) {
-        val tvTitle:TextView = itemView.findViewById(R.id.tvTitle)
+    class MyHolder(itemView: View, contextV: Context) : RecyclerView.ViewHolder(itemView) {
+        val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
         val context = contextV
 
-        fun setData(item:ListItem){
+        fun setData(item: ListItem) {
             tvTitle.text = item.title
             itemView.setOnClickListener {
                 val intent = Intent(context, EditActivity::class.java).apply {
-                 putExtra(MyIntentConstants.I_TITLE_KEY, item.title)
-                 putExtra(MyIntentConstants.I_DESC_KEY, item.desc)
-                 putExtra(MyIntentConstants.I_URI_KEY, item.uri)
+                    putExtra(MyIntentConstants.I_TITLE_KEY, item.title)
+                    putExtra(MyIntentConstants.I_DESC_KEY, item.desc)
+                    putExtra(MyIntentConstants.I_URI_KEY, item.uri)
                 }
                 context.startActivity(intent)
             }
@@ -38,7 +38,6 @@ class MyAdapter (listMain:ArrayList<ListItem>, contextM:Context): RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
-
         holder.setData(listArray.get(position))
     }
 
@@ -46,9 +45,15 @@ class MyAdapter (listMain:ArrayList<ListItem>, contextM:Context): RecyclerView.A
         return listArray.size
     }
 
-    fun updateAdapter(listItems:List<ListItem>) {
+    fun updateAdapter(listItems: List<ListItem>) {
         listArray.clear()
         listArray.addAll(listItems)
         notifyDataSetChanged()
+    }
+
+    fun removeItem(pos: Int) {
+        listArray.removeAt(pos)
+        notifyItemRangeChanged(0, listArray.size)
+        notifyItemRemoved(pos)
     }
 }
