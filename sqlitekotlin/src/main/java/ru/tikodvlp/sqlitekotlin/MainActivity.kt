@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                myAdapter.removeItem(viewHolder.adapterPosition)
+                myAdapter.removeItem(viewHolder.adapterPosition, myDbManager)
             }
         })
     }

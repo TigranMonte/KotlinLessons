@@ -51,7 +51,8 @@ class MyAdapter (listMain:ArrayList<ListItem>, contextM:Context): RecyclerView.A
         notifyDataSetChanged()
     }
 
-    fun removeItem(pos: Int) {
+    fun removeItem(pos: Int, dbManager: MyDbManager) {
+        dbManager.removeItemFromDb(listArray[pos].id.toString())
         listArray.removeAt(pos)
         notifyItemRangeChanged(0, listArray.size)
         notifyItemRemoved(pos)
