@@ -3,9 +3,11 @@ package ru.tikodvlp.sqlitekotlin
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var rcView: RecyclerView
     lateinit var tvNoElements: TextView
+    lateinit var searchView: SearchView
 
     val myDbManager = MyDbManager(this)
     val myAdapter = MyAdapter(ArrayList(), this)
@@ -26,8 +29,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         tvNoElements = findViewById(R.id.tvNoElements)
         rcView = findViewById(R.id.rcView)
+        searchView = findViewById(R.id.searchView)
 
         init()
+        initSearchView()
 
     }
 
@@ -54,8 +59,22 @@ class MainActivity : AppCompatActivity() {
         rcView.adapter = myAdapter
     }
 
+    private fun initSearchView() {
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                val list = myDbManager.readDbData(newText!!)
+                myAdapter.updateAdapter(list)
+                return true
+            }
+        })
+    }
+
     fun fillAdapter() {
-        val list = myDbManager.readDbData()
+        val list = myDbManager.readDbData("")
         myAdapter.updateAdapter(list)
         if (list.size > 0) {
             tvNoElements.visibility = View.GONE
