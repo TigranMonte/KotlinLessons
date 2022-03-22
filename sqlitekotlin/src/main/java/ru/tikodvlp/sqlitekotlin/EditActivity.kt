@@ -16,6 +16,8 @@ import ru.tikodvlp.sqlitekotlin.db.MyIntentConstants
 class EditActivity : AppCompatActivity() {
 
     val imageRequestCode = 10
+    var id = 0
+    var isEditState = false
     var tempImageUri = "empty"
     val myDbManager = MyDbManager(this)
 
@@ -26,12 +28,11 @@ class EditActivity : AppCompatActivity() {
     lateinit var imMainImage:ImageView
     lateinit var edTitle:EditText
     lateinit var edDesc:EditText
+    lateinit var fbEdit:ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
-
-        getMyIntents()
 
         mainImageLayout = findViewById(R.id.mainImageLayout)
         fbAddImage = findViewById(R.id.fbAddImage)
@@ -40,6 +41,9 @@ class EditActivity : AppCompatActivity() {
         imMainImage = findViewById(R.id.imMainImage)
         edTitle = findViewById(R.id.edTitle)
         edDesc = findViewById(R.id.edDesc)
+        fbEdit = findViewById(R.id.fbEdit)
+
+        getMyIntents()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -72,7 +76,11 @@ class EditActivity : AppCompatActivity() {
         val myDesc = edDesc.text.toString()
 
         if (myTitle != "" && myDesc != "") {
-            myDbManager.insertToDb(myTitle, myDesc, tempImageUri)
+            if (isEditState){
+                myDbManager.updateItem(myTitle, myDesc, tempImageUri, id)
+            } else {
+                myDbManager.insertToDb(myTitle, myDesc, tempImageUri)
+            }
             finish()
         }
     }
@@ -86,17 +94,29 @@ class EditActivity : AppCompatActivity() {
         myDbManager.closeDb()
     }
 
+    fun onEditEnable(view: View) {
+        edTitle.isEnabled = true
+        edDesc.isEnabled = true
+        fbEdit.visibility = View.GONE
+    }
+
     fun getMyIntents() {
+        fbEdit.visibility = View.GONE
         val i = intent
 
-        if(i != null){
+        if (i != null) {
             if (i.getStringExtra(MyIntentConstants.I_TITLE_KEY) != null) {
 
                 fbAddImage.visibility = View.GONE
                 edTitle.setText(i.getStringExtra(MyIntentConstants.I_TITLE_KEY))
+                isEditState = true
+                edTitle.isEnabled = false
+                edDesc.isEnabled = false
+                fbEdit.visibility = View.VISIBLE
                 edDesc.setText(i.getStringExtra(MyIntentConstants.I_DESC_KEY))
+                id = i.getIntExtra(MyIntentConstants.I_ID_KEY, 0)
 
-                if(i.getStringExtra(MyIntentConstants.I_URI_KEY) != "empty") {
+                if (i.getStringExtra(MyIntentConstants.I_URI_KEY) != "empty") {
                     mainImageLayout.visibility = View.VISIBLE
                     imMainImage.setImageURI(Uri.parse(i.getStringExtra(MyIntentConstants.I_URI_KEY)))
                     imButtonDeleteImage.visibility = View.GONE
