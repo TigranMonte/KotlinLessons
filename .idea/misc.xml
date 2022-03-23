@@ -13,7 +13,7 @@
         <entry key="sqlitekotlin/src/main/res/drawable/ic_add.xml" value="0.161" />
         <entry key="sqlitekotlin/src/main/res/layout/activity_edit.xml" value="0.25" />
         <entry key="sqlitekotlin/src/main/res/layout/activity_main.xml" value="0.327784423828125" />
-        <entry key="sqlitekotlin/src/main/res/layout/rc_item.xml" value="0.24947916666666667" />
+        <entry key="sqlitekotlin/src/main/res/layout/rc_item.xml" value="0.5" />
       </map>
     </option>
   </component>

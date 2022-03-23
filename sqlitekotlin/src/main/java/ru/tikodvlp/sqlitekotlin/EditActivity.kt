@@ -12,6 +12,8 @@ import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import ru.tikodvlp.sqlitekotlin.db.MyDbManager
 import ru.tikodvlp.sqlitekotlin.db.MyIntentConstants
+import java.text.SimpleDateFormat
+import java.util.*
 
 class EditActivity : AppCompatActivity() {
 
@@ -63,6 +65,7 @@ class EditActivity : AppCompatActivity() {
     fun onClickDeleteImage(view: View) {
         mainImageLayout.visibility = View.GONE
         fbAddImage.visibility = View.VISIBLE
+        tempImageUri = "empty"
     }
 
     fun onClickChooseImage(view: View) {
@@ -77,9 +80,9 @@ class EditActivity : AppCompatActivity() {
 
         if (myTitle != "" && myDesc != "") {
             if (isEditState){
-                myDbManager.updateItem(myTitle, myDesc, tempImageUri, id)
+                myDbManager.updateItem(myTitle, myDesc, tempImageUri, id, getCurrentTime())
             } else {
-                myDbManager.insertToDb(myTitle, myDesc, tempImageUri)
+                myDbManager.insertToDb(myTitle, myDesc, tempImageUri, getCurrentTime())
             }
             finish()
         }
@@ -98,6 +101,10 @@ class EditActivity : AppCompatActivity() {
         edTitle.isEnabled = true
         edDesc.isEnabled = true
         fbEdit.visibility = View.GONE
+        fbAddImage.visibility = View.VISIBLE
+        if (tempImageUri == "empty") return
+        imButtonEditImage.visibility = View.VISIBLE
+        imButtonDeleteImage.visibility = View.VISIBLE
     }
 
     fun getMyIntents() {
@@ -118,11 +125,17 @@ class EditActivity : AppCompatActivity() {
 
                 if (i.getStringExtra(MyIntentConstants.I_URI_KEY) != "empty") {
                     mainImageLayout.visibility = View.VISIBLE
-                    imMainImage.setImageURI(Uri.parse(i.getStringExtra(MyIntentConstants.I_URI_KEY)))
+                    tempImageUri = i.getStringExtra(MyIntentConstants.I_URI_KEY)!!
+                    imMainImage.setImageURI(Uri.parse(tempImageUri))
                     imButtonDeleteImage.visibility = View.GONE
                     imButtonEditImage.visibility = View.GONE
                 }
             }
         }
+    }
+    private fun getCurrentTime(): String {
+        val time = Calendar.getInstance().time
+        val formatter = SimpleDateFormat("dd-MM-yy kk:mm", Locale.getDefault())
+        return formatter.format(time)
     }
 }
