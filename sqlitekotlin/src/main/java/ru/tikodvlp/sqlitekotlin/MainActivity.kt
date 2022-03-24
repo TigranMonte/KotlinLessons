@@ -11,6 +11,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.*
 import org.w3c.dom.Text
 import ru.tikodvlp.sqlitekotlin.db.MyAdapter
 import ru.tikodvlp.sqlitekotlin.db.MyDbManager
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var rcView: RecyclerView
     lateinit var tvNoElements: TextView
     lateinit var searchView: SearchView
+    private var job: Job? = null
 
     val myDbManager = MyDbManager(this)
     val myAdapter = MyAdapter(ArrayList(), this)
@@ -44,7 +46,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         myDbManager.openDb()
-        fillAdapter()
+        fillAdapter("")
     }
 
     override fun onDestroy() {
@@ -65,21 +67,24 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                val list = myDbManager.readDbData(newText!!)
-                myAdapter.updateAdapter(list)
+            override fun onQueryTextChange(text: String?): Boolean {
+                fillAdapter(text!!)
                 return true
             }
         })
     }
 
-    fun fillAdapter() {
-        val list = myDbManager.readDbData("")
-        myAdapter.updateAdapter(list)
-        if (list.size > 0) {
-            tvNoElements.visibility = View.GONE
-        } else {
-            tvNoElements.visibility = View.VISIBLE
+    private fun fillAdapter(text: String) {
+
+        job?.cancel()
+        job = CoroutineScope(Dispatchers.Main).launch {
+            val list = myDbManager.readDbData(text)
+            myAdapter.updateAdapter(list)
+            if (list.size > 0) {
+                tvNoElements.visibility = View.GONE
+            } else {
+                tvNoElements.visibility = View.VISIBLE
+            }
         }
     }
 

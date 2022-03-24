@@ -10,6 +10,9 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import ru.tikodvlp.sqlitekotlin.db.MyDbManager
 import ru.tikodvlp.sqlitekotlin.db.MyIntentConstants
 import java.text.SimpleDateFormat
@@ -79,12 +82,14 @@ class EditActivity : AppCompatActivity() {
         val myDesc = edDesc.text.toString()
 
         if (myTitle != "" && myDesc != "") {
-            if (isEditState){
-                myDbManager.updateItem(myTitle, myDesc, tempImageUri, id, getCurrentTime())
-            } else {
-                myDbManager.insertToDb(myTitle, myDesc, tempImageUri, getCurrentTime())
+            CoroutineScope(Dispatchers.Main).launch {
+                if (isEditState){
+                    myDbManager.updateItem(myTitle, myDesc, tempImageUri, id, getCurrentTime())
+                } else {
+                    myDbManager.insertToDb(myTitle, myDesc, tempImageUri, getCurrentTime())
+                }
+                finish()
             }
-            finish()
         }
     }
     override fun onResume() {
