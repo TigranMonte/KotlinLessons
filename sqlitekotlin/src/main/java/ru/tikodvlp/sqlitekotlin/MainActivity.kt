@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
 
         init()
         initSearchView()
-
     }
 
     fun onClickNew(view: View) {

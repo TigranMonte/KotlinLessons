@@ -13,5 +13,4 @@ class MyDbHelper(context: Context) : SQLiteOpenHelper(context,MyDbNameClass.DATA
         db?.execSQL(MyDbNameClass.SQL_DELETE_TABLE)
         onCreate(db)
     }
-
 }

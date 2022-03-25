@@ -92,11 +92,13 @@ class EditActivity : AppCompatActivity() {
             }
         }
     }
+
     override fun onResume() {
         super.onResume()
         myDbManager.openDb()
 
     }
+
     override fun onDestroy() {
         super.onDestroy()
         myDbManager.closeDb()
@@ -138,6 +140,7 @@ class EditActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun getCurrentTime(): String {
         val time = Calendar.getInstance().time
         val formatter = SimpleDateFormat("dd-MM-yy kk:mm", Locale.getDefault())
