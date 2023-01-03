@@ -3,7 +3,6 @@ fun main(args: Array<String>) {
     var healthPoints = 100
     val isBlessed = true
     val isImmortal = false
-
     // aura
     val aura = auraColor(isBlessed, healthPoints, isImmortal)
 
@@ -13,22 +12,18 @@ fun main(args: Array<String>) {
 
     castFireball(5)
 }
-
 private fun printPlayerStatus(healthPoints: Int, aura: String, isBlessed: Boolean, name: String, healthStatus: String) {
     val statusFormatString = "(HP: $healthPoints) (Aura: $aura) " +
             "(Blessed: ${if (isBlessed) "YES" else "NO"}) -> $name $healthStatus"
     println(statusFormatString)
 }
-
 private fun auraColor(isBlessed: Boolean, healthPoints: Int, isImmortal: Boolean): String {
     val auraVisible = isBlessed && healthPoints > 50 || isImmortal
     val aura = if (auraVisible) "GREEN" else "NONE"
     return aura
 }
-
 private fun castFireball(numFireballs: Int = 2) =
     println("A glass of Fireball springs into existence. (x$numFireballs)")
-
 
 private fun formatHealthStatus(healthPoints: Int, isBlessed: Boolean) =
     when (healthPoints) {
