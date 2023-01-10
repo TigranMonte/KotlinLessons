@@ -5,5 +5,9 @@ fun main(args: Array<String>) {
         "Welcome to SimVillage, $playerName! (copyright $currentYear)"
     }
 
-    println(greetingFun("Leon", 5))
+    runSimulation("Leon", greetingFun)
+}
+fun runSimulation(playerName: String, greetingFun: (String, Int) -> String) {
+    val numBuildings = (1..5).shuffled().last()
+    println(greetingFun(playerName, numBuildings))
 }
