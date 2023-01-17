@@ -6,9 +6,15 @@ fun main(args: Array<String>) {
 //            "Hadiji Ale"
 //        }
 //    }
+//    оператор контроля !!. non-null вызывается когда точно известно, что никогда не получим null
+//    var beverage = readLine()!!.capitalize()
 
-    var beverage = readLine()!!.capitalize() // оператор контроля non-null вызывается когда точно
-                                            // известно, что никогда не получим null
-    //    beverage = null
+    var beverage = readLine()
+//        beverage = null
+    if (beverage != null) {        // использование != для проверки на null
+        beverage = beverage.capitalize()
+    } else {
+        println("Can't do that without crashing - beverage was null")
+    }
     println(beverage)
 }
