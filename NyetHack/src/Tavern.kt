@@ -10,11 +10,12 @@ fun main(args: Array<String>) {
 //    var beverage = readLine()!!.capitalize()
 
     var beverage = readLine()
-//        beverage = null
-    if (beverage != null) {        // использование != для проверки на null
+//  beverage = null
+    if (beverage != null) {
         beverage = beverage.capitalize()
     } else {
         println("Can't do that without crashing - beverage was null")
     }
-    println(beverage)
+    val beverageServed: String = beverage ?: "Хадыженское Эль"
+    println(beverageServed)
 }
