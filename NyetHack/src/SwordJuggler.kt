@@ -13,9 +13,13 @@ fun main(args: Array<String>) {
     }
     println("You juggle $swordsJuggling swords")
 }
-
 fun proficiencyCheck(swordsJuggling: Int?) {
-    swordsJuggling?: throw UnskilledSwordJugglerException()
-}
+//    swordsJuggling?: throw UnskilledSwordJugglerException()
 
+//    функции проверки условий
+//    checkNotNull(swordsJuggling, {"Player cannot juggle swords"})
+    if (swordsJuggling != null) {
+        require(swordsJuggling >= 3, {"Player cannot juggle swords"})
+    }
+}
 class UnskilledSwordJugglerException() : IllegalStateException("Player cannot juggle swords")
