@@ -1,21 +1,9 @@
+const val TAVERN_NAME = "John's Folly"
 fun main(args: Array<String>) {
-//    var beverage = readLine()?.let{
-//        if (it.isNotBlank()) {     безопасный вызов с функцией let
-//            it.capitalize()
-//        } else {
-//            "Hadiji Ale"
-//        }
-//    }
-//    оператор контроля !!. non-null вызывается когда точно известно, что никогда не получим null
-//    var beverage = readLine()!!.capitalize()
-
-    var beverage = readLine()
-//  beverage = null
-    if (beverage != null) {
-        beverage = beverage.capitalize()
-    } else {
-        println("Can't do that without crashing - beverage was null")
-    }
-    val beverageServed: String = beverage ?: "Хадыженское Эль"
-    println(beverageServed)
+    placeOrder()
+}
+private fun placeOrder() {
+    val indexOfApostrophe = TAVERN_NAME.indexOf('\'')
+    val tavernMaster = TAVERN_NAME.substring(0 until indexOfApostrophe)
+    println("Madrigal speaks with $tavernMaster about their order")
 }
