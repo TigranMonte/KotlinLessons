@@ -7,7 +7,11 @@ fun main(args: Array<String>) {
 }
 fun performPurchase(price: Double) {
     displayBalance()
+    val totalPurse = playerGold + (playerSilver / 100.0)
+    println("Total purse: $totalPurse")
     println("Purchasing item for $price")
+
+    val remainingBalance = totalPurse - price
 }
 private fun displayBalance() {
     println("Player's purse balance: Gold: $playerGold, Silver: $playerSilver")
