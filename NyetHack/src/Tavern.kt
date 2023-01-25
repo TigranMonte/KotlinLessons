@@ -5,30 +5,21 @@ var playerGold = 10
 var playerSilver = 10
 fun main(args: Array<String>) {
     placeOrder("elixir,Dragon's Breath,5.91")
-    placeOrder("elixir,Dragon's Breath,5.91")
 }
-fun performPurchase(price: Double, player: String) {
-    try {
-        val totalPurse = playerGold + (playerSilver / 100.0)
-        println("Total purse: $totalPurse")
-        if (price > totalPurse) {
-            println("$player is kicked off the Tavern since not enough founds")
-        } else {
-            println("Purchasing item for $price")
-        }
-
-        val remainingBalance = totalPurse - price
-        println("Remaining balance: ${"%.2f".format(remainingBalance)}")
-        val remainingGold = remainingBalance.toInt()
-        val remainingSilver = (remainingBalance % 1 * 100).roundToInt()
-        playerGold = remainingGold
-        playerSilver = remainingSilver
-    } catch (e: NoSuchElementException) {
-        return
-    }
+fun performPurchase(price: Double) {
     displayBalance()
+    val totalPurse = playerGold + (playerSilver / 100.0)
+    println("Total purse: $totalPurse")
+    println("Purchasing item for $price")
 
+    val remainingBalance = totalPurse - price
+    println("Remaining balance: ${"%.2f".format(remainingBalance)}")
 
+    val remainingGold = remainingBalance.toInt()
+    val remainingSilver = (remainingBalance % 1 * 100).roundToInt()
+    playerGold = remainingGold
+    playerSilver = remainingSilver
+    displayBalance()
 }
 private fun displayBalance() {
     println("Player's purse balance: Gold: $playerGold, Silver: $playerSilver")
@@ -60,7 +51,7 @@ private fun placeOrder(menuData: String) {
 
     println(message)
 
-    performPurchase(price.toDouble(), "Madrigal")
+    performPurchase(price.toDouble())
 
     val phrase = if (name == "Dragon's Breath") {
         "Madrigal exclaims: ${toDragonSpeak("Ah delicious $name!")}"
