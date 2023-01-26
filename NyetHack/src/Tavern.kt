@@ -3,21 +3,27 @@ const val TAVERN_NAME = "John's Folly"
 
 var playerGold = 10
 var playerSilver = 10
-val patronList = listOf("Bill", "Arthur", "Sadie")
+val patronList = mutableListOf("Bill", "Arthur", "Sadie")
 fun main(args: Array<String>) {
-    if (patronList.contains("Sadie")) {
-        println("The tavern master says: Sadie is in the back playing cards.")
-    } else {
-        println("The tavern master says: Sadie isn't here")
-    }
-    if (patronList.containsAll(listOf("Bill", "Arthur"))) {
-        println("The tavern master says: Yeah, they're seated next to window")
-    } else {
-        println("The tavern master says: Nay, they departed hours ago")
-    }
+//    if (patronList.contains("Sadie")) {
+//        println("The tavern master says: Sadie is in the back playing cards.")
+//    } else {
+//        println("The tavern master says: Sadie isn't here")
+//    }
+//    if (patronList.containsAll(listOf("Bill", "Arthur"))) {
+//        println("The tavern master says: Yeah, they're seated next to window")
+//    } else {
+//        println("The tavern master says: Nay, they departed hours ago")
+//    }
 
     placeOrder("elixir,Dragon's Breath,5.91")
 //    println(patronList[0]) // можно еще использовать методы .first() .last()
+    println(patronList)
+    patronList.remove("Bill")
+    patronList.add("Alex")
+    patronList.add(0,"Alex")
+    patronList[0] = "Alexis"
+    println(patronList)
 }
 fun performPurchase(price: Double) {
     displayBalance()
