@@ -5,8 +5,19 @@ var playerGold = 10
 var playerSilver = 10
 val patronList = listOf("Bill", "Arthur", "Sadie")
 fun main(args: Array<String>) {
+    if (patronList.contains("Sadie")) {
+        println("The tavern master says: Sadie is in the back playing cards.")
+    } else {
+        println("The tavern master says: Sadie isn't here")
+    }
+    if (patronList.containsAll(listOf("Bill", "Arthur"))) {
+        println("The tavern master says: Yeah, they're seated next to window")
+    } else {
+        println("The tavern master says: Nay, they departed hours ago")
+    }
+
     placeOrder("elixir,Dragon's Breath,5.91")
-    println(patronList[0]) // можно еще использовать методы .first() .last()
+//    println(patronList[0]) // можно еще использовать методы .first() .last()
 }
 fun performPurchase(price: Double) {
     displayBalance()
