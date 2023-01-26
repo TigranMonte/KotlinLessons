@@ -18,7 +18,7 @@ fun main(args: Array<String>) {
 
     placeOrder("elixir,Dragon's Breath,5.91")
 //    println(patronList[0]) // можно еще использовать методы .first() .last()
-    for (patron in patronList) {
+    patronList.forEach { patron ->
         println("Hey there, $patron")
     }
 }
