@@ -3,8 +3,10 @@ const val TAVERN_NAME = "John's Folly"
 
 var playerGold = 10
 var playerSilver = 10
+val patronList = listOf("Bill", "Arthur", "Sadie")
 fun main(args: Array<String>) {
     placeOrder("elixir,Dragon's Breath,5.91")
+    println(patronList[0]) // можно еще использовать методы .first() .last()
 }
 fun performPurchase(price: Double) {
     displayBalance()
