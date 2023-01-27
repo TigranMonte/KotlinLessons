@@ -1,9 +1,14 @@
 import kotlin.math.roundToInt
+import java.io.File
+
 const val TAVERN_NAME = "John's Folly"
 
 var playerGold = 10
 var playerSilver = 10
 val patronList = mutableListOf("Bill", "Arthur", "Sadie")
+val menuList = File("/Users/anigukasan/IdeaProjects/KotlinLessons/NyetHack/data/tavern-menu-items.txt")
+    .readText()
+    .split("\n")
 fun main(args: Array<String>) {
     if (patronList.contains("Sadie")) {
         println("The tavern master says: Sadie is in the back playing cards.")
@@ -19,7 +24,10 @@ fun main(args: Array<String>) {
 //    println(patronList[0]) // можно еще использовать методы .first() .last()
     patronList.forEachIndexed { index, patron ->
         println("Good evening, $patron - you're #${index + 1} in line")
-        placeOrder(patron, "shandy,Dragon's Breath,5.91")
+        placeOrder(patron, menuList.shuffled().first())
+    }
+    menuList.forEachIndexed { index, data ->
+        println("$index : $data")
     }
 }
 fun performPurchase(price: Double) {
