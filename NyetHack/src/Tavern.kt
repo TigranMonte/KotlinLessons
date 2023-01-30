@@ -6,6 +6,8 @@ const val TAVERN_NAME = "John's Folly"
 var playerGold = 10
 var playerSilver = 10
 val patronList = mutableListOf("Bill", "Arthur", "Sadie")
+val lastName = listOf("Russel", "Morris", "Pets")
+val uniquePatrons = mutableSetOf<String>()
 val menuList = File("/Users/anigukasan/IdeaProjects/KotlinLessons/NyetHack/data/tavern-menu-items.txt")
     .readText()
     .split("\n")
@@ -21,14 +23,13 @@ fun main(args: Array<String>) {
         println("The tavern master says: Nay, they departed hours ago")
     }
 
-//    println(patronList[0]) // можно еще использовать методы .first() .last()
-    patronList.forEachIndexed { index, patron ->
-        println("Good evening, $patron - you're #${index + 1} in line")
-        placeOrder(patron, menuList.shuffled().first())
+    (0..9).forEach {
+        val first = patronList.shuffled().first()
+        val last = lastName.shuffled().first()
+        val name = "$first $last"
+        uniquePatrons += name
     }
-    menuList.forEachIndexed { index, data ->
-        println("$index : $data")
-    }
+    println(uniquePatrons)
 }
 fun performPurchase(price: Double) {
     displayBalance()
