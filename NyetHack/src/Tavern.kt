@@ -12,6 +12,8 @@ val menuList = File("/Users/anigukasan/IdeaProjects/KotlinLessons/NyetHack/data/
     .readText()
     .split("\n")
 fun main(args: Array<String>) {
+    printFormattedTavernMenu(menuList)
+    
     if (patronList.contains("Sadie")) {
         println("The tavern master says: Sadie is in the back playing cards.")
     } else {
@@ -89,4 +91,64 @@ private fun placeOrder(patronName: String, menuData: String) {
         "$patronName says: Thanks for the $name"
     }
     println(phrase)
+}
+fun printFormattedTavernMenu(menuList: List<String>) {
+    println()
+    println("*** Welcome to Taernyl's Folly ***")
+    println()
+
+    val menuGroups = readGroupsFromMenuList(menuList)
+    val mutableMenuList = menuList.toMutableList()
+
+    while (!menuGroups.isEmpty()) {
+        val group = menuGroups.first()
+        println("${formatGroupElement(group)}")
+        mutableMenuList.forEach {
+            val (type, name, price) = it.split(',')
+            if (type == group) {
+                val dots = menuDotsPerName(name.length, price.length)
+                println("${capitalizeMenuItem(name)}$dots$price")
+                //mutableMenuList.removeAt(it.in)
+            }
+        }
+        menuGroups.remove(group)
+    }
+}
+fun menuDotsPerName(nameLenght: Int, priceLength: Int, maxLength: Int = 33): String {
+    val max = maxLength - nameLenght - priceLength
+    val sb = StringBuffer().append("")
+    (0..max).forEach {
+        sb.append('.')
+    }
+    return sb.toString()
+}
+fun capitalizeMenuItem(item: String): String {
+    val sb = StringBuffer()
+    item.split(' ').forEach {
+        if (it.length > 2) {
+            sb.append(it.capitalize())
+        } else {
+            sb.append(it)
+        }
+        sb.append(' ')
+    }
+    sb.deleteCharAt(sb.length - 1)
+    return sb.toString()
+}
+fun formatGroupElement(type: String, maxLength: Int = 33): String {
+    val sb = StringBuffer()
+    val length = maxLength / 2 - type.length / 2 - 2
+    (0..length).forEach {
+        sb.append(' ')
+    }
+    sb.append("~[$type]~")
+    return sb.toString()
+}
+fun readGroupsFromMenuList(menuList: List<String>): MutableSet<String> {
+    val groups = mutableSetOf<String>()
+    menuList.forEach {
+        var (group,_,_) = it.split(',')
+        groups.add(group)
+    }
+    return groups
 }
