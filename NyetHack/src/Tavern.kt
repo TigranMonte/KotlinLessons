@@ -40,6 +40,9 @@ fun main(args: Array<String>) {
         orderCount++
     }
     println(patronGold)
+    println(patronGold["Bill"])
+    println(patronGold["Arthur"])
+    println(patronGold["Sadie"])
 }
 fun performPurchase(price: Double) {
     displayBalance()
