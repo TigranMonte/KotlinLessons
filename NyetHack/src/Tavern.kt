@@ -3,15 +3,13 @@ import java.io.File
 
 const val TAVERN_NAME = "John's Folly"
 
-var playerGold = 10
-var playerSilver = 10
 val patronList = mutableListOf("Bill", "Arthur", "Sadie")
 val lastName = listOf("Russel", "Morris", "Pets")
 val uniquePatrons = mutableSetOf<String>()
 val menuList = File("/Users/anigukasan/IdeaProjects/KotlinLessons/NyetHack/data/tavern-menu-items.txt")
     .readText()
     .split("\n")
-val patronGold = mapOf("Bill" to 10.5, "Arthur" to 8.0, "Sadie" to 12.5)
+val patronGold = mutableMapOf<String, Double>()
 fun main(args: Array<String>) {
     printFormattedTavernMenu(menuList)
     
@@ -32,35 +30,19 @@ fun main(args: Array<String>) {
         val name = "$first $last"
         uniquePatrons += name
     }
-    println(uniquePatrons)
+    uniquePatrons.forEach {
+        patronGold[it] = 6.0
+    }
 
     var orderCount = 0
     while (orderCount <= 9) {
         placeOrder(uniquePatrons.shuffled().first(), menuList.shuffled().first())
         orderCount++
     }
-    println(patronGold)
-    println(patronGold["Bill"])
-    println(patronGold["Arthur"])
-    println(patronGold["Sadie"])
 }
-fun performPurchase(price: Double) {
-    displayBalance()
-    val totalPurse = playerGold + (playerSilver / 100.0)
-    println("Total purse: $totalPurse")
-    println("Purchasing item for $price")
-
-    val remainingBalance = totalPurse - price
-    println("Remaining balance: ${"%.2f".format(remainingBalance)}")
-
-    val remainingGold = remainingBalance.toInt()
-    val remainingSilver = (remainingBalance % 1 * 100).roundToInt()
-    playerGold = remainingGold
-    playerSilver = remainingSilver
-    displayBalance()
-}
-private fun displayBalance() {
-    println("Player's purse balance: Gold: $playerGold, Silver: $playerSilver")
+fun performPurchase(price: Double, patronName: String) {
+    val totalPurse = patronGold.getValue(patronName)
+    patronGold[patronName] = totalPurse - price
 }
 private fun toDragonSpeak(phrase: String) =
     phrase.replace(Regex("[aeiou]")) {
@@ -88,7 +70,7 @@ private fun placeOrder(patronName: String, menuData: String) {
 
     println(message)
 
-//    performPurchase(price.toDouble())
+    performPurchase(price.toDouble(), patronName)
 
     val phrase = if (name == "Dragon's Breath") {
         "$patronName exclaims: ${toDragonSpeak("Ah delicious $name!")}"
