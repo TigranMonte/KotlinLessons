@@ -39,7 +39,15 @@ fun main(args: Array<String>) {
         placeOrder(uniquePatrons.shuffled().first(), menuList.shuffled().first())
         orderCount++
     }
+    displayPatronBalances()
 }
+
+fun displayPatronBalances() {
+    patronGold.forEach {patron, balance ->
+        println("$patron, balance: ${"%.2f".format(balance)}")
+    }
+}
+
 fun performPurchase(price: Double, patronName: String) {
     val totalPurse = patronGold.getValue(patronName)
     patronGold[patronName] = totalPurse - price
