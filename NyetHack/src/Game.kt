@@ -9,21 +9,23 @@ fun main(args: Array<String>) {
 
     // aura
     val aura = auraColor(isBlessed, healthPoints, isImmortal)
-
     val healthStatus = formatHealthStatus(healthPoints, isBlessed)
 
     printPlayerStatus(healthPoints, aura, isBlessed, player.name, healthStatus)
 }
+
 private fun printPlayerStatus(healthPoints: Int, aura: String, isBlessed: Boolean, name: String, healthStatus: String) {
     val statusFormatString = "(HP: $healthPoints) (Aura: $aura) " +
             "(Blessed: ${if (isBlessed) "YES" else "NO"}) -> $name $healthStatus"
     println(statusFormatString)
 }
+
 private fun auraColor(isBlessed: Boolean, healthPoints: Int, isImmortal: Boolean): String {
     val auraVisible = isBlessed && healthPoints > 50 || isImmortal
     val aura = if (auraVisible) "GREEN" else "NONE"
     return aura
 }
+
 private fun formatHealthStatus(healthPoints: Int, isBlessed: Boolean) =
     when (healthPoints) {
         100 -> "is in excellent condition!"
