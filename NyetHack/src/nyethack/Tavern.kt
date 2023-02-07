@@ -1,4 +1,5 @@
-import kotlin.math.roundToInt
+package nyethack
+
 import java.io.File
 
 const val TAVERN_NAME = "John's Folly"
@@ -43,7 +44,7 @@ fun main(args: Array<String>) {
 }
 
 fun displayPatronBalances() {
-    patronGold.forEach {patron, balance ->
+    patronGold.forEach { patron, balance ->
         println("$patron, balance: ${"%.2f".format(balance)}")
     }
 }

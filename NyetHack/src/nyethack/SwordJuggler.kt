@@ -1,3 +1,5 @@
+package nyethack
+
 fun main(args: Array<String>) {
 
     var swordsJuggling: Int? = null
@@ -14,12 +16,12 @@ fun main(args: Array<String>) {
     println("You juggle $swordsJuggling swords")
 }
 fun proficiencyCheck(swordsJuggling: Int?) {
-//    swordsJuggling?: throw UnskilledSwordJugglerException()
+//    swordsJuggling?: throw nyethack.UnskilledSwordJugglerException()
 
 //    функции проверки условий
-//    checkNotNull(swordsJuggling, {"Player cannot juggle swords"})
+//    checkNotNull(swordsJuggling, {"nyethack.Player cannot juggle swords"})
     if (swordsJuggling != null) {
-        require(swordsJuggling >= 3, {"Player cannot juggle swords"})
+        require(swordsJuggling >= 3, {"nyethack.Player cannot juggle swords"})
     }
 }
-class UnskilledSwordJugglerException() : IllegalStateException("Player cannot juggle swords")
+class UnskilledSwordJugglerException() : IllegalStateException("nyethack.Player cannot juggle swords")
