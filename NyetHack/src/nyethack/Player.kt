@@ -1,7 +1,6 @@
 package nyethack
 
 class Player {
-
     var name = "madrigal"
         // переопределение метода чтения
         get() = field.capitalize()

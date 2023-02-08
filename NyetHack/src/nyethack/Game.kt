@@ -6,11 +6,9 @@ fun main(args: Array<String>) {
     player.castFireball()
 
     printPlayerStatus(player)
-
 // Aura
     player.auraColor()
 }
-
 private fun printPlayerStatus(player: Player) {
     println("(Aura: ${player.auraColor()}) " +
             "(Blessed: ${if (player.isBlessed) "YES" else "NO"})")
