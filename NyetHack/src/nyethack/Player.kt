@@ -1,15 +1,19 @@
 package nyethack
 
-class Player(_name: String, _healthPoints: Int, _isBlessed: Boolean, _isImmortal: Boolean) {
+class Player(_name: String, var healthPoints: Int = 100,
+             val isBlessed: Boolean, private val isImmortal: Boolean) {
     var name = _name
         // переопределение метода чтения
         get() = field.capitalize()
         private set(value) {
             field = value.trim()
         }
-    var healthPoints = _healthPoints
-    val isBlessed = _isBlessed
-    private val isImmortal = _isImmortal
+    // вторичный конструктор (можно внести доп
+    constructor(name: String) : this(name, healthPoints = 100,
+                isBlessed = true,
+                isImmortal = false){
+        if (name.toLowerCase() == "kar") healthPoints = 40
+    }
     fun auraColor(): String {
         val auraVisible = isBlessed && healthPoints > 50 || isImmortal
         val aura = if (auraVisible) "GREEN" else "NONE"
