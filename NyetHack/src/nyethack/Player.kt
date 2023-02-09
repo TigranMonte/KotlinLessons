@@ -8,6 +8,11 @@ class Player(_name: String, var healthPoints: Int = 100,
         private set(value) {
             field = value.trim()
         }
+    // блок инициализации
+    init {
+        require(healthPoints > 0) {"healthPoints must be greater than zero."}
+        require(name.isNotBlank()) {"Player must have a name."}
+    }
     // вторичный конструктор (можно внести доп
     constructor(name: String) : this(name, healthPoints = 100,
                 isBlessed = true,
