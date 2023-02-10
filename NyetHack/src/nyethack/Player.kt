@@ -1,13 +1,15 @@
 package nyethack
+import java.io.File
 
 class Player(_name: String, var healthPoints: Int = 100,
              val isBlessed: Boolean, private val isImmortal: Boolean) {
     var name = _name
         // переопределение метода чтения
-        get() = field.capitalize()
+        get() = "${field.capitalize()} of $hometown"
         private set(value) {
             field = value.trim()
         }
+    var hometown = selectHometown()
     // блок инициализации
     init {
         require(healthPoints > 0) {"healthPoints must be greater than zero."}
@@ -38,4 +40,10 @@ class Player(_name: String, var healthPoints: Int = 100,
         }
     fun castFireball(numFireballs: Int = 2) =
         println("A glass of Fireball springs into existence. (x$numFireballs)")
+
+    private fun selectHometown() = File("/Users/anigukasan/IdeaProjects/KotlinLessons/NyetHack/data/towns.txt")
+        .readText()
+        .split("\n")
+        .shuffled()
+        .first()
 }
