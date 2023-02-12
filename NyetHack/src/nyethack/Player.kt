@@ -9,7 +9,7 @@ class Player(_name: String, var healthPoints: Int = 100,
         private set(value) {
             field = value.trim()
         }
-    var hometown = selectHometown()
+    val hometown by lazy { selectHometown() }
     // блок инициализации
     init {
         require(healthPoints > 0) {"healthPoints must be greater than zero."}
