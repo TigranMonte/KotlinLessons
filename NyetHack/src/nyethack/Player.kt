@@ -10,22 +10,26 @@ class Player(_name: String, var healthPoints: Int = 100,
             field = value.trim()
         }
     val hometown by lazy { selectHometown() }
+
     // блок инициализации
     init {
         require(healthPoints > 0) {"healthPoints must be greater than zero."}
         require(name.isNotBlank()) {"Player must have a name."}
     }
+
     // вторичный конструктор (можно внести доп
     constructor(name: String) : this(name, healthPoints = 100,
                 isBlessed = true,
                 isImmortal = false){
         if (name.toLowerCase() == "kar") healthPoints = 40
     }
+
     fun auraColor(): String {
         val auraVisible = isBlessed && healthPoints > 50 || isImmortal
         val aura = if (auraVisible) "GREEN" else "NONE"
         return aura
     }
+
     fun formatHealthStatus() =
         when (healthPoints) {
             100 -> "is in excellent condition!"
