@@ -1,8 +1,10 @@
 package nyethack
 import java.io.File
 
-class Player(_name: String, var healthPoints: Int = 100,
-             val isBlessed: Boolean, private val isImmortal: Boolean) {
+class Player(_name: String,
+             var healthPoints: Int = 100,
+             val isBlessed: Boolean,
+             private val isImmortal: Boolean) {
     var name = _name
         // переопределение метода чтения
         get() = "${field.capitalize()} of $hometown"
@@ -10,7 +12,6 @@ class Player(_name: String, var healthPoints: Int = 100,
             field = value.trim()
         }
     val hometown by lazy { selectHometown() }
-
     // блок инициализации
     init {
         require(healthPoints > 0) {"healthPoints must be greater than zero."}
@@ -29,7 +30,6 @@ class Player(_name: String, var healthPoints: Int = 100,
         val aura = if (auraVisible) "GREEN" else "NONE"
         return aura
     }
-
     fun formatHealthStatus() =
         when (healthPoints) {
             100 -> "is in excellent condition!"
