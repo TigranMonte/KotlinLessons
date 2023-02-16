@@ -17,14 +17,12 @@ class Player(_name: String,
         require(healthPoints > 0) {"healthPoints must be greater than zero."}
         require(name.isNotBlank()) {"Player must have a name."}
     }
-
     // вторичный конструктор (можно внести доп
     constructor(name: String) : this(name, healthPoints = 100,
                 isBlessed = true,
                 isImmortal = false){
         if (name.toLowerCase() == "kar") healthPoints = 40
     }
-
     fun auraColor(): String {
         val auraVisible = isBlessed && healthPoints > 50 || isImmortal
         val aura = if (auraVisible) "GREEN" else "NONE"
@@ -44,7 +42,6 @@ class Player(_name: String,
         }
     fun castFireball(numFireballs: Int = 2) =
         println("A glass of Fireball springs into existence. (x$numFireballs)")
-
     private fun selectHometown() = File("/Users/anigukasan/IdeaProjects/KotlinLessons/NyetHack/data/towns.txt")
         .readText()
         .split("\n")
