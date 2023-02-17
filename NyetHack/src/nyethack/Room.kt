@@ -10,7 +10,7 @@ open class Room(val name: String) {
     open fun load() = "Nothing much to see here..."
 }
 
-class TownSquare : Room("Tom Square") {
+class TownSquare : Room("Town Square") {
 
     override val dangerLevel = super.dangerLevel - 3
     private var bellSound = "GWONG"
