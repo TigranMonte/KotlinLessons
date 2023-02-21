@@ -2,20 +2,31 @@ package nyethack
 
 fun main(args: Array<String>) {
 
-    val player = Player("Madrigal")
-    player.castFireball()
-
-    val currentRoom: Room = TownSquare()
-    println(currentRoom.description())
-    println(currentRoom.load())
-
-    printPlayerStatus(player)
-// Aura
-    player.auraColor()
+    Game.play()
 }
-private fun printPlayerStatus(player: Player) {
-    println("(Aura: ${player.auraColor()}) " +
-            "(Blessed: ${if (player.isBlessed) "YES" else "NO"})")
-    println("${player.name} ${player.formatHealthStatus()}")
+
+object Game {
+    private val player = Player("Madrigal")
+    private val currentRoom: Room = TownSquare()
+    init {
+        println("Welcome, adventurer.")
+        player.castFireball()
+    }
+    fun play() {
+        while (true) {
+            println(currentRoom.description())
+            println(currentRoom.load())
+            // состояние игрока
+            printPlayerStatus(player)
+
+            print("> Enter your command: ")
+            println("Last command: ${readLine()}")
+        }
+    }
+    private fun printPlayerStatus(player: Player) {
+        println("(Aura: ${player.auraColor()}) " +
+                "(Blessed: ${if (player.isBlessed) "YES" else "NO"})")
+        println("${player.name} ${player.formatHealthStatus()}")
+    }
 }
 
