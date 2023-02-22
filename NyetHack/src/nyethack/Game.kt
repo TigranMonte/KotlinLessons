@@ -1,10 +1,8 @@
 package nyethack
-
 fun main(args: Array<String>) {
 
     Game.play()
 }
-
 object Game {
     private val player = Player("Madrigal")
     private val currentRoom: Room = TownSquare()
