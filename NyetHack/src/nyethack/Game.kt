@@ -43,6 +43,7 @@ object Game {
             "move" -> move(argument)
             "quit" -> exitGame()
             "exit" -> exitGame()
+            "map" -> map()
             else -> commandNotFound()
         }
 
@@ -62,6 +63,26 @@ object Game {
         } catch (e: Exception) {
             "Invalid direction: $directionInput"
         }
+
+    private fun map(): String {
+        val notInRoom = "O "
+        val inRoom = "X "
+        var index = 0
+        var map = ""
+
+        while (index < worldMap.count()) {
+            worldMap[index].forEach {
+                if (it == currentRoom) {
+                    map += inRoom
+                } else {
+                    map += notInRoom
+                }
+            }
+            map += "\n"
+            index += 1
+        }
+        return map
+    }
     private fun exitGame() {
         println("Thank you for playing NyetHack! See you soon!")
         exitProcess(0)
