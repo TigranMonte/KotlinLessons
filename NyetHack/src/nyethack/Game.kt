@@ -1,4 +1,7 @@
 package nyethack
+
+import kotlin.system.exitProcess
+
 fun main(args: Array<String>) {
     Game.play()
 }
@@ -38,6 +41,8 @@ object Game {
 
         fun processCommand() = when (command.toLowerCase()) {
             "move" -> move(argument)
+            "quit" -> exitGame()
+            "exit" -> exitGame()
             else -> commandNotFound()
         }
 
@@ -57,5 +62,9 @@ object Game {
         } catch (e: Exception) {
             "Invalid direction: $directionInput"
         }
+    private fun exitGame() {
+        println("Thank you for playing NyetHack! See you soon!")
+        exitProcess(0)
+    }
 }
 
