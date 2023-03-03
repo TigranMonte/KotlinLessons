@@ -13,6 +13,7 @@ class Player(_name: String,
         }
     val hometown by lazy { selectHometown() }
     var currentPosition = Coordinate(0, 0)
+
     // блок инициализации
     init {
         require(healthPoints > 0) {"healthPoints must be greater than zero."}
@@ -24,6 +25,7 @@ class Player(_name: String,
                 isImmortal = false){
         if (name.toLowerCase() == "kar") healthPoints = 40
     }
+
     fun auraColor(): String {
         val auraVisible = isBlessed && healthPoints > 50 || isImmortal
         val aura = if (auraVisible) "GREEN" else "NONE"
@@ -41,6 +43,7 @@ class Player(_name: String,
             in 15..74 -> "looks pretty hurt."
             else -> "is in awful condition!"
         }
+
     fun castFireball(numFireballs: Int = 2) =
         println("A glass of Fireball springs into existence. (x$numFireballs)")
     private fun selectHometown() = File("/Users/anigukasan/IdeaProjects/KotlinLessons/NyetHack/data/towns.txt")
