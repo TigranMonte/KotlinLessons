@@ -1,6 +1,5 @@
 package nyethack
 import java.io.File
-
 class Player(_name: String,
              var healthPoints: Int = 100,
              val isBlessed: Boolean,
@@ -31,6 +30,7 @@ class Player(_name: String,
         val aura = if (auraVisible) "GREEN" else "NONE"
         return aura
     }
+
     fun formatHealthStatus() =
         when (healthPoints) {
             100 -> "is in excellent condition!"

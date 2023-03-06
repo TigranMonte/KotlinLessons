@@ -28,7 +28,6 @@ object Game {
             println(GameInput(readLine()).processCommand())
         }
     }
-
     private fun printPlayerStatus(player: Player) {
         println("(Aura: ${player.auraColor()}) " +
                 "(Blessed: ${if (player.isBlessed) "YES" else "NO"})")
@@ -46,7 +45,6 @@ object Game {
             "map" -> map()
             else -> commandNotFound()
         }
-
         private fun commandNotFound() = "I'm not sure what you're trying to do!"
     }
     private fun move(directionInput: String) =
