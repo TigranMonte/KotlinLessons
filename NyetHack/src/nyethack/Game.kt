@@ -61,7 +61,6 @@ object Game {
         } catch (e: Exception) {
             "Invalid direction: $directionInput"
         }
-
     private fun map(): String {
         val notInRoom = "O "
         val inRoom = "X "

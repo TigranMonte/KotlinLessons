@@ -53,6 +53,7 @@ fun performPurchase(price: Double, patronName: String) {
     val totalPurse = patronGold.getValue(patronName)
     patronGold[patronName] = totalPurse - price
 }
+
 private fun toDragonSpeak(phrase: String) =
     phrase.replace(Regex("[aeiou]")) {
         when (it.value) {

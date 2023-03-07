@@ -24,13 +24,11 @@ class Player(_name: String,
                 isImmortal = false){
         if (name.toLowerCase() == "kar") healthPoints = 40
     }
-
     fun auraColor(): String {
         val auraVisible = isBlessed && healthPoints > 50 || isImmortal
         val aura = if (auraVisible) "GREEN" else "NONE"
         return aura
     }
-
     fun formatHealthStatus() =
         when (healthPoints) {
             100 -> "is in excellent condition!"
@@ -43,7 +41,6 @@ class Player(_name: String,
             in 15..74 -> "looks pretty hurt."
             else -> "is in awful condition!"
         }
-
     fun castFireball(numFireballs: Int = 2) =
         println("A glass of Fireball springs into existence. (x$numFireballs)")
     private fun selectHometown() = File("/Users/anigukasan/IdeaProjects/KotlinLessons/NyetHack/data/towns.txt")
