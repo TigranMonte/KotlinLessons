@@ -1,5 +1,6 @@
 
 class LootBox<T: Loot> (vararg item: T) {
+
     var open = false
     private var loot: Array<out T> = item
 
@@ -20,6 +21,7 @@ class Fedora(val name: String, value: Int): Loot(value)
 class Coin(value: Int): Loot(value)
 
 fun main(args: Array<String>) {
+
         // определения типов можно не указывать\\
     val lootBoxOne: LootBox<Fedora> = LootBox(Fedora("a generic-looking fedora", 15),
         Fedora("a dazzling magenta fedora", 25))
