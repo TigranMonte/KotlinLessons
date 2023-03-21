@@ -1,5 +1,5 @@
 package nyethack
-import nyethack.extensions.random
+import nyethack.extensions.random as randomizer
 import java.io.File
 class Player(_name: String,
              override var healthPoints: Int = 100,
@@ -65,5 +65,5 @@ class Player(_name: String,
     private fun selectHometown() = File("/Users/anigukasan/IdeaProjects/KotlinLessons/NyetHack/data/towns.txt")
         .readText()
         .split("\n")
-        .random()
+        .randomizer()
 }
