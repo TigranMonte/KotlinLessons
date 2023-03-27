@@ -44,18 +44,15 @@ fun main(args: Array<String>) {
     }
     displayPatronBalances()
 }
-
 fun displayPatronBalances() {
     patronGold.forEach { patron, balance ->
         println("$patron, balance: ${"%.2f".format(balance)}")
     }
 }
-
 fun performPurchase(price: Double, patronName: String) {
     val totalPurse = patronGold.getValue(patronName)
     patronGold[patronName] = totalPurse - price
 }
-
 private fun toDragonSpeak(phrase: String) =
     phrase.replace(Regex("[aeiou]")) {
         when (it.value) {

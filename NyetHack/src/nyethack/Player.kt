@@ -22,7 +22,6 @@ class Player(_name: String,
         opponent.healthPoints -= damageDealt
         return damageDealt
     }
-
     var name = _name
         // переопределение метода чтения
         get() = "${field.capitalize()} of $hometown"
