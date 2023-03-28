@@ -88,6 +88,7 @@ private fun placeOrder(patronName: String, menuData: String) {
     }
     println(phrase)
 }
+
 fun printFormattedTavernMenu(menuList: List<String>) {
     println()
     println("*** Welcome to Taernyl's Folly ***")
@@ -110,6 +111,7 @@ fun printFormattedTavernMenu(menuList: List<String>) {
         menuGroups.remove(group)
     }
 }
+
 fun menuDotsPerName(nameLenght: Int, priceLength: Int, maxLength: Int = 33): String {
     val max = maxLength - nameLenght - priceLength
     val sb = StringBuffer().append("")

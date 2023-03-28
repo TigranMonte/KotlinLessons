@@ -1,3 +1,4 @@
+
 fun main(args: Array<String>) {
     runSimulation()
 }
@@ -6,7 +7,6 @@ fun runSimulation() {
     val greetingFun  = configureGreetingFun()
     println(greetingFun("Leon"))
 }
-
 fun configureGreetingFun(): (String) -> String {
     val structureType = "hospitals"
     var numBuildings = 5
