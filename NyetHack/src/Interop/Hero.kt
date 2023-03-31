@@ -7,4 +7,7 @@ fun main(args: Array<String>) {
 
     val friendshipLevel = adversary.determineFriendshipLevel()
     println(friendshipLevel?.toLowerCase() ?: "It's complicated")
+
+    val adversaryHitPoints = adversary.hitPoints
+    println(adversaryHitPoints.dec())
 }
