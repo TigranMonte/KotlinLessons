@@ -1,8 +1,9 @@
 package Interop;
 
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
 import java.io.IOException;
 
 public class Jhava {
@@ -19,6 +20,9 @@ public class Jhava {
         }
         System.out.println("Max spell count: " + SpellBook.MAX_SPELL_COUNT);
         SpellBook.getSpellbookGreeting();
+
+        Function1<String, Unit> translator = HeroKt.getTranslator();
+        translator.invoke("TRUCE");
     }
     @NotNull
     public String utterGreeting() {
